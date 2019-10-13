@@ -1,0 +1,5 @@
+<launch>
+    <rosparam file="$(find laser_values)/config/params.yaml" command="load" />
+    <node pkg="laser_values" type="verify_door_state.py" name="scan_values" output="screen"> 
+    </node>
+</launch>
