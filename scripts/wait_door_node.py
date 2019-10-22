@@ -4,7 +4,7 @@ import rospy
 from sensor_msgs.msg import LaserScan
 import math
 import statistics
-from std_msgs.msg import Bool
+from std_msgs.msg import Empty
 
 range_calculation = False
 range_position_min = 0
@@ -63,16 +63,14 @@ def callback(msg):
     # print ('Closed door range:')
         
     if ranges_median > closed_door_range+2:
-        pub.publish(True)
-        print ('door is opened')
+        pub.publish(Empty())
+        rospy.loginfo('DOOR IS OPEN.')
     else:
-        print ('door is closed')
+        rospy.loginfo('DOOR IS CLOSED.')
     
     
-    
-
 rospy.init_node('verify_door_state')
 sub = rospy.Subscriber('/scan', LaserScan, callback)
-pub = rospy.Publisher('verify_door_state', Bool, queue_size=10)
+pub = rospy.Publisher('/butia_navigation/wait_door', Empty, queue_size=1)
 reading_gap
 rospy.spin()
