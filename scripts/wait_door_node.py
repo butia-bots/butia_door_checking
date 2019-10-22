@@ -35,25 +35,7 @@ def reading_gap(msg):
     ranges = msg.ranges[range_position_min:range_position_max+1]
     ranges_median = statistics.median(ranges)
     closed_door_range = ranges_median
-    range_calculation = True
-    # print ('angle_max: ')
-    # print (angle_max)
-    # print ('angle_min: ')
-    # print (angle_min)
-    # print ('angle_gap: ')
-    # print (angle_gap)
-    # print ('readings per radians: ')
-    # print (rpr)
-    # print ('range_gap: ')
-    # print (range_gap)
-    # print ('range_position_min: ')
-    # print (range_position_min)
-    # print ('range_position_max: ')
-    # print (range_position_max)
-    # print ('Ranges_median1')
-    # print (ranges_median)
-    
-    
+    range_calculation = True  
 
 def callback(msg):
     if range_calculation == False:
@@ -67,10 +49,15 @@ def callback(msg):
         rospy.loginfo('DOOR IS OPEN.')
     else:
         rospy.loginfo('DOOR IS CLOSED.')
+
+def callback2(msg):
+    global range_calculation
+    range_calculation = False
     
     
 rospy.init_node('verify_door_state')
 sub = rospy.Subscriber('/scan', LaserScan, callback)
+sub2 = rospy.Subscriber('/butia_navigation/analize_door', Empty, callback2)
 pub = rospy.Publisher('/butia_navigation/wait_door', Empty, queue_size=1)
 reading_gap
 rospy.spin()
