@@ -1,5 +1,5 @@
 <launch>
-    <rosparam file="$(find laser_values)/config/wat_door.yaml" command="load" />
-    <node pkg="laser_values" type="verify_door_state.py" name="scan_values" output="screen"> 
+    <rosparam file="$(find butia_door_checking)/config/wait_door.yaml" command="load" />
+    <node pkg="butia_door_checking" type="wait_door_node.py" name="wait_door_node" output="screen"> 
     </node>
 </launch>
