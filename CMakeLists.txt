@@ -185,7 +185,7 @@ include_directories(
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 install(FILES
-  wait_door_node.py
+  scripts/wait_door_node.py
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
